@@ -1,11 +1,22 @@
 export default function JobGrid() {
-  return( 
-  <div className="grid grid-cols-4 bg-accent">
-    <p>Вакансия</p><p>Статус</p><p>Следующий шаг</p><p>Обновленло</p>
-    {jobList.map((job, ind)=>(
-        <div key={ind}>{job.vacancies_info.vacancies_name}</div>
-    ))}
-  </div>);
+  return (
+    <div className="flex flex-col gap-4 bg-accent">
+      <div className="grid grid-cols-4">
+        <p>Вакансия</p>
+        <p>Статус</p>
+        <p>Следующий шаг</p>
+        <p>Обновленло</p>
+      </div>
+      {jobList.map((job, ind) => (
+        <button className="grid grid-cols-4 border border-border" key={ind}>
+          <p>{job.vacancies_info.vacancies_name}</p>
+          <p>{job.status}</p>
+          <p>{job.next_step.description}</p>
+          <p>{job.update_time}</p>
+        </button>
+      ))}
+    </div>
+  );
 }
 
 const jobList = [
@@ -28,6 +39,8 @@ const jobList = [
     },
     update_time: "Сегодня",
   },
+
+  
   {
     vacancies_info: {
       vacancies_name: "React-разраб",
