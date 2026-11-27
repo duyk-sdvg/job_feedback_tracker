@@ -9,13 +9,14 @@ import SearchFilter from "./SearchFilter";
 
 export default function FeedbackApp() {
   const addDialogRef = useRef<HTMLDialogElement>(null);
+
   return (
     <div className="relative">
-      <Header dialogRef={addDialogRef}/>
+      <Header dialogRef={addDialogRef} />
       <FilterMenu />
       <SearchFilter />
       <JobGrid />
-      <AddDialogWindow dialogRef={addDialogRef}/>
+      <AddDialogWindow dialogRef={addDialogRef} />
     </div>
   );
 }
