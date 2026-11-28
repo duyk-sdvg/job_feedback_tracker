@@ -1,6 +1,7 @@
 import { RefObject } from "react";
 import Input from "./Input";
 import Select from "./Select";
+import { addApplications } from "@/app/lib/applications";
 
 export default function AddDialogWindow({
   dialogRef,
@@ -19,44 +20,75 @@ export default function AddDialogWindow({
           onClick={() => dialogRef.current?.close()}
         ></button>
       </div>
-      <Input
-        textLabel="Компания"
-        isRequired={true}
-        placeholder="Название компании"
-      />
-      <Input
-        textLabel="Должность"
-        isRequired={true}
-        placeholder="Название должности"
-      />
-      <Input textLabel="Ссылка на вакансию" placeholder="https://" />
-      <Select textLabel="Статус" selectList={["Сохранено", "Откликнулся", "Собеседование", "Оффер", "Отказ"]} />
 
+      <form action={addApplications}>
+        <Input
+          name="company_name"
+          textLabel="Компания"
+          isRequired={true}
+          placeholder="Название компании"
+        />
+        <Input
+          name="job_title"
+          textLabel="Должность"
+          isRequired={true}
+          placeholder="Название должности"
+        />
+        <Input
+          name="vacancy_url"
+          textLabel="Ссылка на вакансию"
+          placeholder="https://"
+        />
+        <Select
+          name="status"
+          textLabel="Статус"
+          selectList={[
+            "Сохранено",
+            "Откликнулся",
+            "Собеседование",
+            "Оффер",
+            "Отказ",
+          ]}
+        />
         <div className="flex">
-            <Input textLabel="Зарплата от"/>
-            <Select textLabel="Формат работы" selectList={["Не указан", "Офис", "Удаленно", "Гибрид"]} />
+          <Input name="salary_from" textLabel="Зарплата от" />
+          <Select
+            name="work_format"
+            textLabel="Формат работы"
+            selectList={["Не указан", "Офис", "Удаленно", "Гибрид"]}
+          />
         </div>
-
-        <Input textLabel="Следующий шаг" placeholder="Что сделать дальше" />
-
+        <Input
+          name="next_step"
+          textLabel="Следующий шаг"
+          placeholder="Что сделать дальше"
+        />
         <div>
-          <Input textLabel="Дата следующего шага" placeholder="ДД.ММ"/>
-          <Input textLabel="Время" placeholder="ЧЧ.ММ"/>
+          <Input
+            name="next_step_date"
+            textLabel="Дата следующего шага"
+            placeholder="ДД.ММ"
+          />
+          <Input name="next_step_time" textLabel="Время" placeholder="ЧЧ.ММ" />
         </div>
-
         <label>
-            Заметка
-            <textarea placeholder="Что важно знать о вакансии" />
+          Заметка
+          <textarea name="note" placeholder="Что важно знать о вакансии" />
         </label>
-
         * Обязательные поля
-
         <div>
-          <button className="hover:bg-accent-hover">Отмена</button>
-          <button className="hover:bg-accent-hover">Создать отклик</button>
+          <button
+            type="button"
+            onClick={() => dialogRef.current?.close()}
+            className="hover:bg-accent-hover"
+          >
+            Отмена
+          </button>
+          <button type="submit" className="hover:bg-accent-hover">
+            Создать отклик
+          </button>
         </div>
-
+      </form>
     </dialog>
   );
 }
-
