@@ -8,7 +8,7 @@ export default function AddDialogWindow({
   dialogRef: RefObject<HTMLDialogElement | null>;
 }) {
   return (
-    <dialog className="bg-foreground " ref={dialogRef}>
+    <dialog className="bg-foreground m-auto" ref={dialogRef}>
       <div className="flex items-center">
         <div className="flex flex-col">
           <h2>Новый отклик</h2>

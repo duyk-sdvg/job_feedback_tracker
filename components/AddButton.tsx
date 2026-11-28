@@ -4,7 +4,7 @@ export default function AddButton({dialogRef}:{dialogRef: RefObject<HTMLDialogEl
 
 
   return (
-    <button className="bg-accent" onClick={()=>dialogRef.current?.show()}>
+    <button className="bg-accent" onClick={()=>dialogRef.current?.showModal()}>
       Добавить отклик
     </button>
   );

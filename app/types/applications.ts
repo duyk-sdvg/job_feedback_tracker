@@ -8,11 +8,11 @@ export interface ApplicationResponse {
   salary_from: number | null;
   status: StatusFormat;
   next_step: string | null;
-  next_step_date: string | null;
+  next_step_date: Date | null;
   next_step_time: string | null;
   note: string | null;
-  created_at: string;
-  updated_at: string;
+  created_at: Date ;
+  updated_at: Date ;
 }
 
 type WorkFormat = "Не указан" | "Офис" | "Удаленно" | "Гибрид";

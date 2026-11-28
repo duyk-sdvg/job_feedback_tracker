@@ -1,4 +1,10 @@
-export default function JobGrid() {
+import { ApplicationResponse } from "@/app/types/applications";
+
+export default function JobGrid({
+  applicationData,
+}: {
+  applicationData: ApplicationResponse[];
+}) {
   return (
     <div className="flex flex-col gap-4 bg-accent">
       <div className="grid grid-cols-4">
@@ -7,57 +13,30 @@ export default function JobGrid() {
         <p>Следующий шаг</p>
         <p>Обновленло</p>
       </div>
-      {jobList.map((job, ind) => (
-        <button className="grid grid-cols-4 border border-border" key={ind}>
-          <p>{job.vacancies_info.vacancies_name}</p>
+      {applicationData.map((job) => (
+        <button className="grid grid-cols-4 border border-border text-left" key={job.id}>
+
+          <div>
+            <p>{job.job_title}</p>
+            <div className="flex gap-5">
+              <p>{job.company_name}</p>
+              <p>{job.work_format}</p>
+            </div>
+            <p>От {job.salary_from} ₽</p>
+          </div>
+
           <p>{job.status}</p>
-          <p>{job.next_step.description}</p>
-          <p>{job.update_time}</p>
+
+          <div>
+            <p>{job.next_step}</p>
+            <div className="flex gap-5">
+              <p>{job.next_step_date && job.next_step_date.toLocaleDateString()}</p>
+              <p>{job.next_step_time && job.next_step_time.toString()}</p>
+            </div>
+          </div>
+          <p>{job.updated_at.toLocaleDateString()}</p>
         </button>
       ))}
     </div>
   );
 }
-
-const jobList = [
-  {
-    vacancies_info: {
-      vacancies_name: "Frontend-разраб",
-      company_name: "Компания Ы",
-      work_format: "Удаленно",
-      salary: "от 100000",
-    },
-
-    status: "собез",
-
-    next_step: {
-      description: "Подготовиться к встрече",
-      date: {
-        date_of_month: "24 ноября",
-        time: "11:00",
-      },
-    },
-    update_time: "Сегодня",
-  },
-
-  
-  {
-    vacancies_info: {
-      vacancies_name: "React-разраб",
-      company_name: "Компания Z",
-      work_format: "Офис",
-      salary: "от 300000",
-    },
-
-    status: "Откликнуться",
-
-    next_step: {
-      description: "Уточнить статус отклика",
-      date: {
-        date_of_month: "25 ноября",
-        time: null,
-      },
-    },
-    update_time: "Вчера",
-  },
-];
